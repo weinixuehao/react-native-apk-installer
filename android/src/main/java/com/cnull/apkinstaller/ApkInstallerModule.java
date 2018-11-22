@@ -1,5 +1,7 @@
 package com.cnull.apkinstaller;
 
+import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -54,6 +56,9 @@ public class ApkInstallerModule extends ReactContextBaseJavaModule {
       Uri apkURI = ApkInstallerFileProvider.getUriForFile(getReactApplicationContext(),
         BuildConfig.APPLICATION_ID + ".provider",
         new File(path));
+      if (BuildConfig.DEBUG) {
+          Log.w(ApkInstallerModule.class.getSimpleName(), "apkURI:" + apkURI.toString());
+      }
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       intent.setDataAndType(apkURI, "application/vnd.android.package-archive");
