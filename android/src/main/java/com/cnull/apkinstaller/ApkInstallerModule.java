@@ -1,6 +1,7 @@
 package com.cnull.apkinstaller;
 
 import android.os.Build;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -57,12 +58,12 @@ public class ApkInstallerModule extends ReactContextBaseJavaModule {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
           apkURI = ApkInstallerFileProvider.getUriForFile(_context,
                   _context.getPackageName() + ".provider",
-            new File(path));
+            new File(Environment.getExternalStorageDirectory(), path));
       } else {
           apkURI = Uri.fromFile(new File(path));
       }
       if (BuildConfig.DEBUG) {
-          Log.w(ApkInstallerModule.class.getSimpleName(), "packageName:" + _context.getPackageName() + " apkURI:"+apkURI.getPath() + "path:"+path);
+          Log.w(ApkInstallerModule.class.getSimpleName(), "packageName:" + _context.getPackageName() + " apkURI:"+apkURI.getPath() + " path:"+path);
       }
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
