@@ -57,7 +57,7 @@ public class ApkInstallerModule extends ReactContextBaseJavaModule {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
           apkURI = ApkInstallerFileProvider.getUriForFile(_context,
                   _context.getPackageName() + ".provider",
-            new File(path));
+            new File(_context.getExternalFilesDir("Download"), path));
       } else {
           apkURI = Uri.fromFile(new File(path));
       }
