@@ -54,7 +54,7 @@ public class ApkInstallerModule extends ReactContextBaseJavaModule {
           e.printStackTrace();
       }
       if (BuildConfig.DEBUG) {
-          Log.w(ApkInstallerModule.class.getSimpleName(), "context:" + _context);
+          Log.w(ApkInstallerModule.class.getSimpleName(), "applicationId:" + BuildConfig.APPLICATION_ID);
       }
       Uri apkURI = ApkInstallerFileProvider.getUriForFile(_context,
         BuildConfig.APPLICATION_ID + ".provider",
