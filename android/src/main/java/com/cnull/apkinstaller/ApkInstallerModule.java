@@ -53,12 +53,12 @@ public class ApkInstallerModule extends ReactContextBaseJavaModule {
       } catch (Exception e) {
           e.printStackTrace();
       }
-      if (BuildConfig.DEBUG) {
-          Log.w(ApkInstallerModule.class.getSimpleName(), "packageName:" + _context.getPackageName());
-      }
       Uri apkURI = ApkInstallerFileProvider.getUriForFile(_context,
               _context.getPackageName() + ".provider",
-        new File(path));
+        new File("file://"+path));
+      if (BuildConfig.DEBUG) {
+          Log.w(ApkInstallerModule.class.getSimpleName(), "packageName:" + _context.getPackageName() + " apkURI:"+apkURI.getPath());
+      }
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       intent.setDataAndType(apkURI, "application/vnd.android.package-archive");
